@@ -2463,6 +2463,10 @@ public class Mockito extends ArgumentMatchers {
      */
     @SafeVarargs
     public static <T> T spy(T... reified) {
+        if (reified == null) {
+            throw new IllegalArgumentException("Cannot spy on null.");
+        }
+
         if (reified.length > 0) {
             throw new IllegalArgumentException(
                     "Please don't pass any values here. Java will detect class automagically.");
