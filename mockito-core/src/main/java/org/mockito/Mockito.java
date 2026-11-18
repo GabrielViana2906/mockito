@@ -2450,6 +2450,10 @@ public class Mockito extends ArgumentMatchers {
      * @since 1.10.12
      */
     public static <T> T spy(Class<T> classToSpy) {
+        if (classToSpy == null) {
+            throw new IllegalArgumentException("Cannot spy on null.");
+        }
+
         return MOCKITO_CORE.mock(
                 classToSpy, withSettings().useConstructor().defaultAnswer(CALLS_REAL_METHODS));
     }
